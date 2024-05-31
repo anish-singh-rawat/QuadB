@@ -19,7 +19,7 @@ export const registerUser = async (req, res) => {
     }
     const user = await newUser.save();
     const token = jwt.sign({ username: user.username, id: user._id }, process.env.JWTKEY);
-    return res.status(200).json({ user, token });
+    return res.status(200).json({ user, token , message : "user register successfully", success : true});
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -39,7 +39,7 @@ export const loginUser = async (req, res) => {
         return res.status(401).json({message : "wrong password"});
       } else {
         const token = jwt.sign({ email: user.email, id: user._id }, process.env.JWTKEY);
-        return res.status(200).json({ user, token });
+        return res.status(200).json({ user, token , message : "user login successfully", success : true});
       }
     } else {
       return res.status(404).json({message : "User not found"});

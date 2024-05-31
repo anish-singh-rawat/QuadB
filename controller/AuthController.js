@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 // Register new user
 export const registerUser = async (req, res) => {
   const { username, email, password, mobile, isAdmin } = req.body;
-  if (!username || !email, !password || !mobile || !isAdmin) {
+  if (!username || !email, !password || !mobile) {
     return res.status(402).json({ message: "Please provide all data" });
   }
   const salt = await bcrypt.genSalt(10);
